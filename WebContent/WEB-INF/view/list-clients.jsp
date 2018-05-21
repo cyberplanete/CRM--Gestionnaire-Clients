@@ -4,29 +4,35 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <title>CRM Gestion des Clients</title>
 <!-- Ajout dossier CSS -->
-	<link type="text/css" 
-		rel="stylesheet" 
-		href="${pageContext.request.contextPath}/ressources/css/style.css">
+	<link 	type="text/css" 
+			rel="stylesheet" 
+			href="${pageContext.request.contextPath}/ressources/css/style.css">
 </head>
 <body>
 	
 
 	<div id="wrapper">
-		<div id="header"></div>
+		<div id="header">
 		<h2>CRM -Gestionnaire des Clients</h2>
+		</div>
 	</div>
 
 	<div id="container">
 		<div id="content">
+			<!-- Ajout du boutton ajout client -->
+					<input type="button" value="Ajouter un client" onclick="windows.location.href='afficheFormulairePourAjout';return false;"
+					class="add-button"/>
+					
 			<table>
 				<tr>
-					<td>Prenom</td>
-					<td>Nom</td>
-					<td>Email</td>
+					<th>Prenom</th>
+					<th>Nom</th>
+					<th>Email</th>
 				</tr>
+			</div>	
 			<!-- une boucle pour obtenir la liste des clients depuis le controlleur -->
 				<c:forEach var="tempClients" items="${listClientJSP}">
 					<tr>
@@ -38,8 +44,6 @@
 
 			</table>
 
-
-		</div>
 	</div>
 </body>
 </html>
