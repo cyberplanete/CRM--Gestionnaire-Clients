@@ -6,16 +6,21 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>CRM Gestion des Clients</title>
+<!-- Ajout dossier CSS -->
+	<link type="text/css" 
+		rel="stylesheet" 
+		href="${pageContext.request.contextPath}/ressources/css/style.css">
 </head>
 <body>
+	
 
 	<div id="wrapper">
-		<div id="enTete"></div>
-		<h2>Liste des Clients</h2>
+		<div id="header"></div>
+		<h2>CRM -Gestionnaire des Clients</h2>
 	</div>
 
-	<div id="contenant">
-		<div id="contenu">
+	<div id="container">
+		<div id="content">
 			<table>
 				<tr>
 					<td>Prenom</td>

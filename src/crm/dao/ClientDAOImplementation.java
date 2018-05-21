@@ -28,7 +28,6 @@ private SessionFactory generateurDeSession;
 
 //Avec projet_crm_spring_hibernate.xml
 	@Override
-	@Transactional
 	public List<ClientClass> getClients() {
 		
 		//Obtenir la session en cours d'hibernate
