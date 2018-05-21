@@ -31,7 +31,6 @@
 					</tr>
 				</c:forEach>
 
-<c:forEach var="tempclients" items=""></c:forEach>
 			</table>
 
 
