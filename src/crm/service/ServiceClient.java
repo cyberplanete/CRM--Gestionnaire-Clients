@@ -8,4 +8,9 @@ public interface ServiceClient {
 	
 	public List<ClientClass> GetListClient();
 
+	public void ajoutClient(ClientClass clientClass);
+
+	public ClientClass GetClient(int idClient);
+
+	
 }

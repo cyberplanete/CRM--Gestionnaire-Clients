@@ -26,4 +26,23 @@ public class ServiceClientImplementation implements ServiceClient {
 		return listClients;
 	}
 
+
+	@Override
+	@Transactional
+	public void ajoutClient(ClientClass clientClass) {
+		
+		clientDAO.addClient(clientClass);
+		
+	}
+
+
+	@Override
+	@Transactional
+	public ClientClass GetClient(int idClient) {
+		
+		ClientClass clientClass= clientDAO.getClient(idClient);
+		
+		return clientClass;
+	}
+
 }

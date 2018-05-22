@@ -9,4 +9,8 @@ public interface ClientDAO {
 	
 	public List<ClientClass> getClients();
 
+	public void addClient(ClientClass clientClass);
+
+	public ClientClass getClient(int idClient);
+
 }

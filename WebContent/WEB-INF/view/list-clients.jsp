@@ -22,8 +22,9 @@
 
 	<div id="container">
 		<div id="content">
-			<!-- Ajout du boutton ajout client -->
-					<input type="button" value="Ajouter un client" onclick="windows.location.href='afficheFormulairePourAjout';return false;"
+			<!-- Ajout du boutton ajouter client - refère à @GetMapping controlleur ajoutclient-->
+					<input type="button" value="Ajouter un client" 
+					onclick="window.location.href='ajoutClient'; return false;"
 					class="add-button"/>
 					
 			<table>
@@ -31,19 +32,28 @@
 					<th>Prenom</th>
 					<th>Nom</th>
 					<th>Email</th>
+					<th>Actions</th>
 				</tr>
-			</div>	
+			
 			<!-- une boucle pour obtenir la liste des clients depuis le controlleur -->
 				<c:forEach var="tempClients" items="${listClientJSP}">
+				
+					<c:url var="lienMiseAJour" value="/clients/miseAJourClient">
+						<c:param name="idClient" value="${tempClients.id} ">
+						</c:param>
+					
+					</c:url>
+				
 					<tr>
 						<td>${tempClients.prenom}</td>
 						<td>${tempClients.nom}</td>
 						<td>${tempClients.email}</td>
+						<td><a href="${lienMiseAJour}"> Mise à jour</a></td>
 					</tr>
 				</c:forEach>
 
 			</table>
-
+</div>	
 	</div>
 </body>
 </html>

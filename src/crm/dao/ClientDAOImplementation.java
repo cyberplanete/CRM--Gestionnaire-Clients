@@ -7,8 +7,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
-
 import crm.entity.ClientClass;
 
 
@@ -34,7 +32,7 @@ private SessionFactory generateurDeSession;
 		Session sessionEnCours =generateurDeSession.getCurrentSession();
 		
 		//Créer une requete sur la ClassClient pour obtenir la liste
-		Query<ClientClass> uneRequete = sessionEnCours.createQuery("from ClientClass", ClientClass.class);
+		Query<ClientClass> uneRequete = sessionEnCours.createQuery("from ClientClass order by nom", ClientClass.class);
 		
 		//Obtenir ke resultat final
 		List<ClientClass> listClients = uneRequete.getResultList();
@@ -42,6 +40,33 @@ private SessionFactory generateurDeSession;
 		//Retour sous forme de liste
 		return listClients;
 		
+	}
+
+	@Override
+	public void addClient(ClientClass clientClass) {
+		
+		//Obtenir la session en cours d'hibernate
+				Session sessionEnCours =generateurDeSession.getCurrentSession();
+		
+		//Sauvegarde le client.
+		sessionEnCours.save(clientClass);
+		
+	}
+
+	@Override
+	public ClientClass getClient(int idClient) {
+		
+		//Obtenir la session en cours d'hibernate
+				Session sessionEnCours =generateurDeSession.getCurrentSession();
+				
+				//Créer une requete sur la ClassClient pour obtenir la liste
+				Query<ClientClass> uneRequete = sessionEnCours.createQuery("from ClientClass select * where id=idclient", ClientClass.class);
+				
+				//Obtenir ke resultat final
+				ClientClass leClientClass = uneRequete.getSingleResult();
+		
+		
+		return  leClientClass;
 	}
 
 }
