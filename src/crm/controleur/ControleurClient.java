@@ -117,7 +117,7 @@ public class ControleurClient {
 
 		for (ClientClass clientClass : listClient) {	
 		
-			if (clientClass.getNom().equals(nom.getNom()) ) {
+			if (clientClass.getNom().equalsIgnoreCase(nom.getNom()) ) {
 				
 				ClientClass unClientClass=serviceClient.GetClient(clientClass.getId());
 				listClientFound.add(unClientClass);
