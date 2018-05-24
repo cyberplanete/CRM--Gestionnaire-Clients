@@ -28,7 +28,7 @@
 					class="add-button"/>
 				
 				
-			<!--Ajout du bouton  -->	
+			<!--Ajout du bouton @GetMapping formClientRechercheJSP du controlleur -->	
 			<input value="Rechercher un client" type="button" onclick="window.location.href='formClientRechercheJSP'; return false;"
 			class="add-buton">
 			

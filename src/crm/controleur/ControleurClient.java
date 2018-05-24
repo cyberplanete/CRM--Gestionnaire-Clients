@@ -111,7 +111,6 @@ public class ControleurClient {
 	public String rechercheClientValider(@ModelAttribute("rechercheClientJSP") ClientClass nom, Model model ) {
 		
 		List<ClientClass> listClient= serviceClient.GetListClient();
-		System.out.println("voici le nom: " + nom.getNom());
 		List<ClientClass> listClientFound = new ArrayList<>();
 		
 		boolean clientTrouvé=false;
@@ -126,7 +125,6 @@ public class ControleurClient {
 			}	
 			
 		}
-		
 		if (clientTrouvé) {
 			
 			model.addAttribute("listClientFoundJSP",listClientFound);
