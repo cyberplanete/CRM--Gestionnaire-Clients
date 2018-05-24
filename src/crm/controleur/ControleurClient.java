@@ -1,5 +1,6 @@
 package crm.controleur;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import crm.dao.ClientDAO;
 import crm.entity.ClientClass;
 import crm.service.ServiceClient;
+import net.bytebuddy.asm.Advice.Return;
 
 
 @Controller
@@ -39,18 +41,18 @@ public class ControleurClient {
 		return "list-clients";
 	}
 	
-	@GetMapping("/ajoutClient")
+	@GetMapping("/formAjoutClientJSP")
 	public String ajouterClientMethode(Model modelClient) {
 		
 		//Creer un attribut Model lier au formulaire ajouter-client.jp
 		ClientClass unClientClass = new ClientClass();		
-		modelClient.addAttribute("client", unClientClass);
+		modelClient.addAttribute("ajoutClientJSP", unClientClass);
 
 		return "ajouter-client";
 	}
 	
-	@PostMapping("/sauvegardeClient")
-	public String sauvegardeClient(@ModelAttribute("client") ClientClass clientClass ) {
+	@PostMapping("/formAjoutClientJSPValider")
+	public String sauvegardeClient(@ModelAttribute("ajoutClientJSP") ClientClass clientClass ) {
 		
 		serviceClient.ajoutClient(clientClass);
 		
@@ -58,19 +60,82 @@ public class ControleurClient {
 		
 	}
 	
-	@GetMapping("/miseAJourClient")
-	public String miseAJourClient(@RequestParam("idClient")int idClient, Model modelclient ) {
+	@GetMapping("/formulaireMAJClient")
+	public String miseAJourClient(@RequestParam("idClient")int idClient, Model vueUpdateclient ) {
 		
-		//Obtenir le client depuis la base de donnée
+		//Obtenir le client depuis la class service
 		ClientClass clientClass =serviceClient.GetClient(idClient);
 		
 		//Auto complete le formulaire  
-		modelclient.addAttribute("clientUpdate", clientClass);
+		vueUpdateclient.addAttribute("clientUpdateJSP", clientClass);
 		//et envoyé sur la page
 		return "miseAJour-client";
+	}
+	
+	@PostMapping("/UpdateClientValider")
+	public String updateClientValider(@ModelAttribute("UpdateClientValider") ClientClass clientClass ) {
 		
+		serviceClient.updateClient(clientClass);
+		
+		return "redirect:/clients/liste/";
 		
 	}
 	
+	@GetMapping("/suppressionClient")
+	public String suppressionClient(@RequestParam("idClient")int idClient ) {
+		
+
+		//Obtenir le client depuis la class service
+		ClientClass clientClass =serviceClient.GetClient(idClient);
+		
+		
+		//Obtenir les client depuis la class service- 
+		serviceClient.suppressionClient(clientClass);
+		
+		
+		//et envoyé sur la page
+		return "redirect:/clients/liste/";
+	}
+	
+	@GetMapping("/formClientRechercheJSP")
+	public String rechercherClient(Model modelClient) {
+		
+		//Creer un attribut Model lier au formulaire ajouter-client.jp
+		ClientClass unClientClass = new ClientClass();		
+		modelClient.addAttribute("rechercheClientJSP", unClientClass);
+
+		return "rechercher-client";
+	}
+	
+	@PostMapping("/formClientRechercheJSP-Valider")
+	public String rechercheClientValider(@ModelAttribute("rechercheClientJSP") ClientClass nom, Model model ) {
+		
+		List<ClientClass> listClient= serviceClient.GetListClient();
+		System.out.println("voici le nom: " + nom.getNom());
+		List<ClientClass> listClientFound = new ArrayList<>();
+		
+		boolean clientTrouvé=false;
+
+		for (ClientClass clientClass : listClient) {	
+		
+			if (clientClass.getNom().equals(nom.getNom()) ) {
+				
+				ClientClass unClientClass=serviceClient.GetClient(clientClass.getId());
+				listClientFound.add(unClientClass);
+				clientTrouvé=true;
+			}	
+			
+		}
+		
+		if (clientTrouvé) {
+			
+			model.addAttribute("listClientFoundJSP",listClientFound);
+			
+			return "list-client-found";
+			
+		}else {
+			return "list-client-notfound";
+		}	
+	}
 }
 

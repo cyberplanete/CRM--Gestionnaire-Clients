@@ -24,7 +24,7 @@
 			<h3>Sauvegarde client</h3>
 
 		</div>
-		<form:form action="sauvegardeClient" modelAttribute="client"
+		<form:form action="formAjoutClientJSPValider" modelAttribute="ajoutClientJSP"
 			method="POST">
 
 			<table>

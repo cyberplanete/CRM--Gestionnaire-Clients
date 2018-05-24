@@ -56,11 +56,13 @@ private SessionFactory generateurDeSession;
 	@Override
 	public ClientClass getClient(int idClient) {
 		
+		String idClientSQL = "from ClientClass c where c.id="+idClient;
+		
 		//Obtenir la session en cours d'hibernate
 				Session sessionEnCours =generateurDeSession.getCurrentSession();
 				
 				//Créer une requete sur la ClassClient pour obtenir la liste
-				Query<ClientClass> uneRequete = sessionEnCours.createQuery("from ClientClass select * where id=idclient", ClientClass.class);
+				Query<ClientClass> uneRequete = sessionEnCours.createQuery(idClientSQL, ClientClass.class);
 				
 				//Obtenir ke resultat final
 				ClientClass leClientClass = uneRequete.getSingleResult();
@@ -68,5 +70,28 @@ private SessionFactory generateurDeSession;
 		
 		return  leClientClass;
 	}
+
+	@Override
+	public void updateClient(ClientClass clientClass) {
+		//Obtenir la session en cours d'hibernate
+		Session sessionEnCours =generateurDeSession.getCurrentSession();
+
+		//Sauvegarde le client.
+		sessionEnCours.update(clientClass);
+		
+	}
+
+	@Override
+	public void suppressionClient(ClientClass clientClass) {
+				
+		//Obtenir la session en cours d'hibernate
+		Session sessionEnCours =generateurDeSession.getCurrentSession();
+		
+		//Suppresion du client.
+		sessionEnCours.delete(clientClass);
+
+	}
+
+
 
 }

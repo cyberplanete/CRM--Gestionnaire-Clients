@@ -12,5 +12,11 @@ public interface ServiceClient {
 
 	public ClientClass GetClient(int idClient);
 
+	public void updateClient(ClientClass clientClass);
+
+	public void suppressionClient(ClientClass clientClass);
+
+	
+
 	
 }

@@ -45,4 +45,25 @@ public class ServiceClientImplementation implements ServiceClient {
 		return clientClass;
 	}
 
+
+	@Override
+	@Transactional
+	public void updateClient(ClientClass clientClass) {
+		
+		clientDAO.updateClient(clientClass);
+		
+	}
+
+
+	@Override
+	@Transactional
+	public void suppressionClient(ClientClass clientClass) {
+		
+		clientDAO.suppressionClient(clientClass);
+		
+	}
+
+
+
+
 }

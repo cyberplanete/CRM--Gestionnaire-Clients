@@ -13,4 +13,10 @@ public interface ClientDAO {
 
 	public ClientClass getClient(int idClient);
 
+	public void updateClient(ClientClass clientClass);
+
+	public void suppressionClient(ClientClass clientClass);
+
+	
+
 }

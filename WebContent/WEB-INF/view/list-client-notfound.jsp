@@ -6,53 +6,38 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link type="text/css" rel="stylesheet"
 	href="${pageContext.request.contextPath}/ressources/css/style.css ">
 <link type="text/css" rel="stylesheet"
 	href="${pageContext.request.contextPath}/ressources/css/add-customer-style.css ">
 
+<title>CRM -Gestionnaire des Clients - Sauvegarde client</title>
 </head>
 <body>
-<div id="wrapper">
+
+	<div id="wrapper">
 		<div id="header">
 			<h2>CRM -Gestionnaire des Clients</h2>
 		</div>
 		<div id="container">
-			<h3>Sauvegarde client</h3>
-		</div>
-		<form:form action="UpdateClientValider" modelAttribute="clientUpdateJSP"
-			method="POST">
+			<h3>Recherche de client</h3>
 
-		<!-- Ce champ cache permet d'obtenir  complete les données nécéssaire à la mise à jour du client  -->
-		<form:hidden path="id"/>
+		</div>
+		
 
 			<table>
 				<tbody>
 					<tr>
-						<td><label>Nom :</label></td>
-						<td><form:input path="nom" /></td>
+						<td>Client non trouvée</td>
+						<td></td>
 					</tr>
 
-					<tr>
-						<td><label>Prénom :</label></td>
-						<td><form:input path="prenom" /></td>
-					</tr>
+					
 
-					<tr>
-						<td><label>Email :</label></td>
-						<td><form:input path="email" /></td>
-					</tr>
-
-					<tr>
-						<td><label></label></td>
-						<td><input type="submit" value="Valider" class="save"></td>
-					</tr>
 				</tbody>
 			</table>
 			<br>
-		</form:form>
+		
 		<div style=""></div>
 		<p>
 			<a href="${pageContext.request.contextPath}/clients/liste">Retour
